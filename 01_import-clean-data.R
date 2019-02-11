@@ -127,8 +127,8 @@ full_prod = bind_rows(res_prod, inv_prod %>% select(-TAXA_ID))
 ## quick vis of pools
 
 
-ggplot(full_prod, aes(x = log10(PROD_mg_N), y = log10(PROD_mg_P), group = TYPE)) + 
+ggplot(full_prod, aes(x = PROD_mg_N, y = PROD_mg_P, group = TYPE)) + 
   geom_point(aes(colour = TYPE), size = 3) +
   scale_colour_manual(values = c("dark green", "red", "brown")) +
-  theme(panel.background = element_blank()) + facet_wrap(~DATE)
+  theme(panel.background = element_blank()) + scale_y_log10() + scale_x_log10()
 
